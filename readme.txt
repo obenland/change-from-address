@@ -2,7 +2,7 @@
 Contributors: obenland
 Tags: email, sender, branding, communication, identity
 Requires at least: 4.3
-Tested up to: 6.4
+Tested up to: 6.9
 Stable tag: 3
 Requires PHP: 7.0
 License: GPLv2 or later
