@@ -47,7 +47,7 @@ require_once $_tests_dir . '/includes/functions.php';
  * Manually loads the plugin under test into the WP test harness.
  */
 function _manually_load_plugin() {
-	require dirname( __DIR__ ) . '/change-from-address.php';
+	require_once dirname( __DIR__ ) . '/change-from-address.php';
 }
 tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
 
