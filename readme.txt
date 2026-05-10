@@ -4,7 +4,7 @@ Tags: email, sender, branding, communication, identity
 Requires at least: 4.3
 Tested up to: 6.9
 Stable tag: 3
-Requires PHP: 7.0
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,6 +20,9 @@ This plugin empowers you to take full control over your email communication by a
 3. Go to Settings > General and change the Email From Name and Email Address fields at the bottom of the page.
 
 == Changelog ==
+
+= 4 =
+* Raised the minimum required PHP version to 7.4.
 
 = 3 =
 * Added loading of textdomain so the plugin can be translated.

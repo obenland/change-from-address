@@ -1,0 +1,18 @@
+{
+	"name": "change-from-address",
+	"version": "3.0.0",
+	"private": true,
+	"description": "Allows you to change the default email address and sender name for emails sent by WordPress.",
+	"devDependencies": {
+		"@wordpress/env": "^11.4.0"
+	},
+	"scripts": {
+		"wp-env": "wp-env",
+		"start": "wp-env start",
+		"stop": "wp-env stop",
+		"destroy": "wp-env destroy",
+		"test": "npm run test-php",
+		"test-php": "wp-env run tests-cli --env-cwd=/var/www/html/wp-content/plugins/change-from-address composer test",
+		"test-php-multisite": "wp-env run tests-cli --env-cwd=/var/www/html/wp-content/plugins/change-from-address composer test-multisite"
+	}
+}
