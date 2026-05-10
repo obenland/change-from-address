@@ -1,14 +1,14 @@
 {
-  "landingPage": "\/wp-admin\/options-general.php#email-from-address",
-  "preferredVersions": {
-    "php": "8.2",
-    "wp": "latest"
-  },
-  "steps": [
-    {
-      "step": "login",
-      "username": "admin",
-      "password": "password"
-    }
-  ]
+	"landingPage": "/wp-admin/options-general.php#email-from-address",
+	"preferredVersions": {
+		"php": "8.2",
+		"wp": "latest"
+	},
+	"steps": [
+		{
+			"step": "login",
+			"username": "admin",
+			"password": "password"
+		}
+	]
 }
