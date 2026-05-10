@@ -164,36 +164,35 @@ class Test_Change_From_Address extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Tests that wp_mail() actually sends with the configured From address.
+	 * Tests that wp_mail() actually configures PHPMailer with the saved
+	 * From address and name end-to-end.
 	 *
-	 * Captures the headers via the `wp_mail` filter (rather than actually
-	 * sending mail). Asserts the final From: header contains the configured
-	 * name + address — the user-visible end-to-end behaviour of the plugin.
+	 * Captures the From values from the `phpmailer_init` action, which
+	 * fires after WordPress has applied the `wp_mail_from` /
+	 * `wp_mail_from_name` filter chains and called `setFrom()` on the
+	 * mailer. Whether the underlying send succeeds is not relevant — we
+	 * only assert on what the mailer was configured with.
 	 */
 	public function test_wp_mail_uses_configured_from_address_and_name() {
 		update_option( 'cefko_email_from_address', 'noreply@example.com' );
 		update_option( 'cefko_email_from_name', 'Acme Corp' );
 
 		$captured = array();
-		$filter   = static function ( $args ) use ( &$captured ) {
-			$captured = $args;
-			$args['to'] = '';
-			return $args;
+		$listener = static function ( $mailer ) use ( &$captured ) {
+			$captured = array(
+				'from' => $mailer->From,
+				'name' => $mailer->FromName,
+			);
 		};
-		add_filter( 'wp_mail', $filter );
+		add_action( 'phpmailer_init', $listener );
 
 		try {
-			// Trigger PHPMailer pre-send to populate From + FromName.
-			$mailer = new PHPMailer\PHPMailer\PHPMailer( true );
-			$mailer->setFrom(
-				apply_filters( 'wp_mail_from', get_bloginfo( 'admin_email' ) ),
-				apply_filters( 'wp_mail_from_name', 'WordPress' )
-			);
-
-			$this->assertSame( 'noreply@example.com', $mailer->From );
-			$this->assertSame( 'Acme Corp', $mailer->FromName );
+			wp_mail( 'recipient@example.com', 'Subject', 'Body' );
 		} finally {
-			remove_filter( 'wp_mail', $filter );
+			remove_action( 'phpmailer_init', $listener );
 		}
+
+		$this->assertSame( 'noreply@example.com', $captured['from'] ?? null );
+		$this->assertSame( 'Acme Corp', $captured['name'] ?? null );
 	}
 }
