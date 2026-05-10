@@ -21,6 +21,9 @@ This plugin empowers you to take full control over your email communication by a
 
 == Changelog ==
 
+= 4 =
+* Raised the minimum required PHP version to 7.4.
+
 = 3 =
 * Added loading of textdomain so the plugin can be translated.
 
