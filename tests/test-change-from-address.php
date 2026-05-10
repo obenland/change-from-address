@@ -179,10 +179,13 @@ class Test_Change_From_Address extends WP_UnitTestCase {
 
 		$captured = array();
 		$listener = static function ( $mailer ) use ( &$captured ) {
+			// PHPMailer exposes its public state via PascalCase properties.
+			// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 			$captured = array(
 				'from' => $mailer->From,
 				'name' => $mailer->FromName,
 			);
+			// phpcs:enable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 		};
 		add_action( 'phpmailer_init', $listener );
 
