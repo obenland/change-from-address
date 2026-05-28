@@ -1,11 +1,9 @@
 {
 	"core": null,
 	"phpVersion": "8.3",
+	"port": 8889,
 	"testsEnvironment": false,
 	"mappings": { "wp-content/plugins/change-from-address": "." },
-	"lifecycleScripts": {
-		"afterStart": "npx wp-env run cli wp plugin activate change-from-address"
-	},
 	"config": {
 		"WP_DEBUG": true,
 		"WP_DEBUG_LOG": true,
