@@ -5,7 +5,7 @@
 	"description": "Allows you to change the default email address and sender name for emails sent by WordPress.",
 	"devDependencies": {
 		"@wordpress/env": "^11.10.0",
-		"@wordpress/scripts": "^32.6.0"
+		"@wordpress/scripts": "^33.0.0"
 	},
 	"scripts": {
 		"wp-env": "wp-env",
